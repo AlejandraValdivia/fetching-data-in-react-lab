@@ -10,4 +10,4 @@ Install dependencies
 Go to http://localhost:5173
 
 
-![alt text](src/assets/galaxy-bg-star-wars-api-screnshot.png)
+![alt text](src/assets/star-wars-api-black-bg.jpg)

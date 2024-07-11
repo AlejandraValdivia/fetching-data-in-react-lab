@@ -1,27 +1,29 @@
 import * as starshipService from "./services/starshipService";
 import StarshipSearch from "./components/StartshipSearch";
 import StarshipList from "./components/StarshipList";
+import Loading from "./components/Loading";
 
 import { useState, useEffect } from "react";
 
 import "./App.css";
 const App = () => {
   const [starships, setStarships] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const data = await starshipService.defaultData();
-        console.log(data.results);
-        if (data) {
-          const starshipsListItem = data.results.map((starship) => {
-            return {
-              class: starship.starship_class,
-              manufacturer: starship.manufacturer,
-              model: starship.model,
-            };
-          });
-          console.log("starshipList", starshipsListItem);
+        if (data && data.results) {
+          const starshipsListItem = data.results.map(
+            ({ starship_class, manufacturer, model }) => ({
+              class: starship_class,
+              manufacturer,
+              model,
+            })
+          );
+          setLoading(false);
           setStarships(starshipsListItem);
         }
       } catch (error) {
@@ -32,19 +34,26 @@ const App = () => {
   }, []);
 
   const fetchStarships = async (ship) => {
-    const data = await starshipService.show(ship);
-    const starshipsListItem = data.results.map((starship) => {
-      return {
-        class: starship.starship_class,
-        manufacturer: starship.manufacturer,
-        model: starship.model,
-      };
-    });
-    setStarships(starshipsListItem);
+    try {
+      const data = await starshipService.show(ship);
+      if (data && data.results) {
+        const starshipsListItem = data.results.map(
+          ({ starship_class, manufacturer, model }) => ({
+            class: starship_class,
+            manufacturer,
+            model,
+          })
+        );
+        setStarships(starshipsListItem);
+      }
+    } catch (error) {
+      console.error("Error fetching starships:", error);
+    }
   };
 
   return (
     <>
+      {loading && <Loading />}
       <main>
         <h1>Star Wars API</h1>
         <p>Search for starships</p>
