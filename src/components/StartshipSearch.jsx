@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 const StarshipSearch = ({ fetchStarships }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +16,7 @@ const StarshipSearch = ({ fetchStarships }) => {
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
       />
-      <button type="submit">Search</button>
+      <Button variant="dark" type="submit">Search</Button>
     </form>
   );
 };

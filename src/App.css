@@ -6,7 +6,8 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("src/assets/3d-render-solar-system-background-with-colourful-nebula.jpg") center center repeat scroll;
+  background: url("src/assets/3d-render-solar-system-background-with-colourful-nebula.jpg")
+    center center repeat scroll;
 }
 
 #root {
@@ -21,8 +22,8 @@ h1 {
   color: #ffffff;
 }
 
-h2 {
-  font-size: 2.4em;
+p {
+  font-size: 1.1 em;
   line-height: 1.1;
   color: #ffffff;
 }
@@ -86,6 +87,12 @@ button {
   background-color: #ffffff;
   color: black;
   border: 1px solid #02002a;
+  margin-bottom: 2rem;
+}
+
+.list-group-flush > .list-group-item {
+  border-width: 0 0 var(--bs-list-group-border-width);
+  border-style: none;
 }
 
 /* Media queries */
@@ -98,8 +105,8 @@ button {
     font-size: 4.8em;
   }
 
-  h2 {
-    font-size: 3.2em;
+  p {
+    font-size: 2 em;
   }
 
   section ul {
